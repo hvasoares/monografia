@@ -5,6 +5,18 @@ namespace :chef do
 	end
 
 	task :upload_recipe => :create_tar do
-		system("git commit -m 'uploading recipe tar' -o .")
 	end
+
+	task :git_push => :git_commit do
+		system('git push origin master')
+	end
+
+	task :git_commit => :git_add do
+		system("git commit -m 'uploading recipe tar' --amend -o .")
+	end
+
+	task :git_add do
+		system("git add ./receitas.tgz")
+	end
+
 end
