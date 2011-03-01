@@ -1,0 +1,6 @@
+{
+	"desenvolvimento_monografia": {
+		
+	},
+	"run_list" : [ "recipe[instalar_ruby]" ]
+}

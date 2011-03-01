@@ -1,0 +1,10 @@
+namespace :chef do
+
+	task :create_tar do
+		system("tar -cvzf receitas.tgz receitas_chef")
+	end
+
+	task :upload_recipe => :create_tar do
+		system("git commit -m 'uploading recipe tar' -o .")
+	end
+end
