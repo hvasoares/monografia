@@ -15,14 +15,14 @@ Equivalence class partitioning (ECP) and Cucumber-TC
 -------------
 ECP tells us that inputs or outputs must be separated into sets. The inputs/outpus that have the same behaviour are grouped together. For instance, integers greater than zero and less than ten should be in the valid group.
 To define a class using CFTC:
-<
-Functionality: fatorial   
-Example:   
-\|Class name	\| class definition		\|    
-\| n		\| integer between 0 and 10	\|    
-\| result	\| factorial(n)			\|    
-Scenario outline: a factorial with a valid number    
-	Given a number \<n\>     
-	When i click \"do fatorial\"     
-	Then i should see \<result\>     
+>
+>Functionality: fatorial   
+>Example:   
+>Class name	\| class definition		\|    
+>| n		\| integer between 0 and 10	\|    
+>| result	\| factorial(n)			\|    
+>Scenario outline: a factorial with a valid number    
+>	Given a number \<n\>     
+>	When i click \"do fatorial\"     
+>	Then i should see \<result\>     
 >
