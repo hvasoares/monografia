@@ -1,0 +1,14 @@
+require 'rubygems'
+require 'bundler'
+
+Bundler.setup
+
+require 'cucumber/rake/task'
+require 'rspec'
+
+namespace :cucumber do
+
+	Cucumber::Rake::Task.new(:wip) do |t|
+		t.cucumber_opts = "features --tags @wip"
+	end
+end
