@@ -1,0 +1,5 @@
+require 'cucumberftc/ecp_create_task'
+
+namespace :cucumber_ftc do
+	ECPCreateTask.new
+end

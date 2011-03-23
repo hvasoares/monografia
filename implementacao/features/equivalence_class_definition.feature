@@ -9,7 +9,7 @@ Scenario: Creating a scenario with integer ranges
 		Given I had the following ecp classes:
 		| class		| definition		 |	is valid?| applies_to |
 		| number	| integer from 0 to 1    |	valid	 |  a,b	      |
-		| invalid	| strings		 |	invalid	 |  a,b
+		| invalid	| strings		 |	invalid	 |  a,b	      |
 		And "c" is an integer
 		When I sum "a" and "b"
 		Then the result is "c"
