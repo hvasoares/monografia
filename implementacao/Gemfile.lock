@@ -30,3 +30,4 @@ DEPENDENCIES
   cucumber (= 0.10.0)
   rake
   rspec (= 2.5.0)
+  rspec-core (= 2.5.1)
