@@ -1,0 +1,3 @@
+faltando escrever metodo para gerar valores das variaveis
+faltando escrever a classe variable definitions em ecp
+faltando completar a classe ecp::facade
