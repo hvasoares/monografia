@@ -1,0 +1,1 @@
+/home/hvasoares/des/monografia/implementacao/lib/ecp/spec/spec_helper.rb
