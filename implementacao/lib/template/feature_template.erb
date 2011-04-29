@@ -1,0 +1,15 @@
+Feature: <%=@feature_name%>
+
+<%@scenarios.each do |scenario|%>
+Scenario: <%=scenario%>
+	<%@steps[scenario].each do | step|%>
+	<%=step%>
+	
+	Examples:
+	| <%=@examples_header[scenario].join(" | ")%> |
+	<%@examples[scenario].each do |line| %>
+	| <%=line.join(" | ")%> |
+<%
+		end
+	end
+end%>

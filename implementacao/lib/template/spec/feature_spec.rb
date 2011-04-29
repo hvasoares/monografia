@@ -2,7 +2,7 @@ require 'feature'
 include CucumberFTC::Template
 describe CucumberFTC::Template::Feature do
 	before :each do
-		@instance = Feature.new (:template_path)
+		@instance = Feature.new (:template_path,:destination_path)
 	end
 
 	it 'should create an feature with its generated values ' do
@@ -17,12 +17,16 @@ describe CucumberFTC::Template::Feature do
 			]
 		)
 
-		File.should_receive(:read).with(:template_path).and_return(:template_text)
+		File.should_receive(:read).twice.with(:template_path).and_return(:template_text)
 		erb = mock(ERB)
-		ERB.should_receive(:new).with(:template_text).and_return(erb)
-		@instance.should_receive(:binding).and_return(:bindings)
-		erb.should_receive(:result).with(:bindings).and_return(:text_result)
-		
+		ERB.should_receive(:new).twice.with(:template_text).and_return(erb)
+		@instance.should_receive(:binding).twice.and_return(:bindings)
+		erb.should_receive(:result).twice.with(:bindings).and_return(:text_result)
+	
+		file_mock = mock(File)
+		File.should_receive(:open).with(:destination_path,'w').and_return(file_mock) 
+		file_mock.should_receive(:write).with(:text_result)
+		file_mock.should_receive(:close)
 		
 		@instance.feature_text.should == :text_result
 	end
