@@ -23,17 +23,19 @@ describe TreeWalker do
 		non_ecp_scenario :desc
 		ecp_scenario :cenario_desc
 		@instance.features.include?(:name).should be_true
-		@instance.scenario_descriptions_for(:name).include?(
+		@instance.scenarios_for(:name).include?(
 			:cenario_desc	
 		).should be_true
 
-		@instance.steps_for_scenario(:cenario_desc).should ==[
+		@instance.steps_for(:cenario_desc).should ==[
 			{
 				:keyword=> 'And',
 				:name => 'other step',
 				:multiline_arg => :arg
 			}
 		]
+
+		@instance.inputs_declaration_for(:cenario_desc).should == :raw_data
 	end
 
 	def non_ecp_scenario description
@@ -88,9 +90,9 @@ describe TreeWalker do
 		visit_steps true
 
 		declaration_step = mock('step',
-			:keyword => :Given,
-			:name => :name,
-			:multiline_arg => :table
+			:keyword => 'Given',
+			:name => 'I have the following inputs',
+			:multiline_arg => create_table_mock
 		)
 		ordinary_step = mock('step ordinary',
 			:keyword => 'And',
@@ -100,6 +102,12 @@ describe TreeWalker do
 
 		@instance.visit_step(declaration_step)
 		@instance.visit_step(ordinary_step)
+	end
+
+	def create_table_mock
+		@inputs_table = mock('inputs')
+		@inputs_table.should_receive(:raw).and_return(:raw_data)
+		return @inputs_table
 	end
 
 end

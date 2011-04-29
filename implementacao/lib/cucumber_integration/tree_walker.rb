@@ -18,13 +18,18 @@ class CucumberFTC::CucumberIntegration::TreeWalker
 		@features = Array.new
 		@scenarios = Hash.new
 		@steps = Hash.new
+		@inputs_table = Hash.new
+	end
+	
+	def inputs_declaration_for scenario
+		@inputs_table[scenario].raw
 	end
 
-	def scenario_descriptions_for feature
+	def scenarios_for feature
 		@scenarios[feature]	
 	end
 
-	def steps_for_scenario scenario_name
+	def steps_for scenario_name
 		@steps[scenario_name]
 	end
 
@@ -106,6 +111,8 @@ class CucumberFTC::CucumberIntegration::TreeWalker
 				:name => step.name,
 				:multiline_arg => step.multiline_arg
 			})
+		elsif step.name =~ /^I have the following inputs$/ then
+			@inputs_table[@scenario_name]=	step.multiline_arg
 		end
 
 		@step_count +=1
