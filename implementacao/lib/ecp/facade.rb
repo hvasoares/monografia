@@ -32,4 +32,5 @@ class CucumberFTC::ECP::Facade
 	def generate_tests
 		TestCaseGenerator.new(@variable_definitions).generate
 	end
+
 end

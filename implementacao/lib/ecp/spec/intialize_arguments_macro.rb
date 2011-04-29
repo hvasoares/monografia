@@ -6,23 +6,30 @@ module CucumberFTC
 
 		module ClassMethod
 
-			def it_should_require_the_right_argument_in_constructor(
-				opts={}
-			)
-				raise ArgumentError.new(
-					':argument_types should be setted'
-				) if not opts.has_key?(:argument_types)
-				raise ArgumentError.new(
-					':class should be setted'
-				) if not opts.has_key?(:class)
-				instance_eval do
-					include CucumberFTC::RspecUtil::ClassMethod
-					create_an_example_with_constructor(
-						:message=>'should construct with the right set of arguments',
-						:class=>opts[:class],
-						:argument_sequence =>opts[:argument_types],
-						:will_raise_argument_error? => :no
-					)
+			def create_mock_for_class classs
+				new_mock = mock(classs)
+				new_mock.stub!(:is_a?).with(classs).and_return(true)
+				new_mock.stub!(:is_a?).with(Regexp).and_return(false)
+				return new_mock
+			end
+
+				def it_should_require_the_right_argument_in_constructor(
+					opts={}
+				)
+					raise ArgumentError.new(
+						':argument_types should be setted'
+					) if not opts.has_key?(:argument_types)
+					raise ArgumentError.new(
+						':class should be setted'
+					) if not opts.has_key?(:class)
+					instance_eval do
+						include CucumberFTC::RspecUtil::ClassMethod
+						create_an_example_with_constructor(
+							:message=>'should construct with the right set of arguments',
+							:class=>opts[:class],
+							:argument_sequence =>opts[:argument_types],
+							:will_raise_argument_error? => :no
+						)
 					test_with_every_possible_incorrect_argument_sequence(
 						opts[:class],
 						opts[:argument_types]
