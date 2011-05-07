@@ -20,10 +20,17 @@ describe CucumberFTC::ECP::Configuration do
 			:var_defs
 		).and_return(facade)
 
-		[IntegerRangeSemanticModel,DoubleRangeSemantic].each{|klass|
+		expected_classes.each{|klass|
 			facade.should_receive(:register_class).with(klass)
 		}
 
 		@instance.facade
+	end
+
+	def expected_classes 
+		[IntegerRangeSemanticModel,
+			DoubleRangeSemantic,
+			GroupSemanticModel
+		]
 	end
 end
