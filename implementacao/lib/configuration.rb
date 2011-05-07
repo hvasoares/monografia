@@ -1,38 +1,47 @@
-require 'module_def'
+require File.dirname(__FILE__)+'/module_def'
 
-require 'cucumberintegration/facade'
-require 'templating/feature'
-require 'ecp_class/facade'
+require 'cucumber_integration/facade'
+require 'template/configuration'
+require 'ecp/configuration'
 
-module CucumberFTC::Configuration
+require 'cucumber'
+
+class CucumberFTC::Configuration
 	def build argv
-		integration = CucumberFTC::CucumberIntegrationFacade.new
+		integration = CucumberFTC::CucumberIntegration::Facade.new
 		ecp = CucumberFTC::ECP::Configuration.new
 		template = CucumberFTC::Template::Configuration.new
 		integration.main.run(argv)
 
+		puts "Creating the generated files"
+
 		integration.features.each do |feature|
-			file = template.feature('.features/' feature.gsub(" ","_")+'.ftc.feature')
+			puts "Generating for feature " + feature
+			
+			file = template.feature('./features/'+ feature.gsub(" ","_")+'.ftc.feature')
 
 			integration.scenarios_for(feature).each do |scenario|
 				variables = ecp.facade
 				file.add_scenario(scenario)
 				integration.inputs_declaration_for(scenario).each do |input|
-					variables.register_variable input[0],inputs[1]
+					variables.register_variable input[0],input[1]
 				end
 				file.add_examples_header *(
 					integration.inputs_declaration_for(scenario).map{|input| input[0]}
 				)
 
-				file.add_examples variables.generate_tests
+				tests = variables.generate_tests
+				
+				puts tests.join
+
+				file.add_examples tests
 
 				integration.steps_for(scenario).each do |step|
-					file.add_step(step[:keyword]+ ' ' + step[:name])
+					file.add_step(step[:keyword], step[:name])
 				end
 			end
 
 			file.feature_text
 		end
-
 	end
 end

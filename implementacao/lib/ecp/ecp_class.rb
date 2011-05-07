@@ -1,5 +1,5 @@
-require 'cucumber_ftc'
-require 'semantic_model'
+require File.dirname(__FILE__)+'/module_def'
+require File.dirname(__FILE__)+'/semantic_model'
 class CucumberFTC::ECP::EcpClass
 	attr_reader :name
 	def initialize name,semantic_model

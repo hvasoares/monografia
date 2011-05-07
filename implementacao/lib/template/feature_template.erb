@@ -1,15 +1,14 @@
 Feature: <%=@feature_name%>
 
 <%@scenarios.each do |scenario|%>
-Scenario: <%=scenario%>
+Scenario Outline: <%=scenario%>
 	<%@steps[scenario].each do | step|%>
 	<%=step%>
-	
+	<%end%>
 	Examples:
 	| <%=@examples_header[scenario].join(" | ")%> |
 	<%@examples[scenario].each do |line| %>
 	| <%=line.join(" | ")%> |
 <%
 		end
-	end
 end%>

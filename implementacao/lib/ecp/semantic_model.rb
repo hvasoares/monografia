@@ -1,4 +1,4 @@
-require 'cucumber_ftc'
+require File.dirname(__FILE__)+'/module_def'
 
 class CucumberFTC::ECP::SemanticModel
 

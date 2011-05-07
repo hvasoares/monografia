@@ -1,8 +1,6 @@
-require 'cucumber_ftc'
-require 'no_regex_for_class_name'
-require 'variable_definitions'
-require 'semantic_model'
-require 'test_case_generator'
+require File.dirname(__FILE__)+'/module_def'
+require File.dirname(__FILE__)+'/variable_definitions'
+require File.dirname(__FILE__)+'/test_case_generator'
 include CucumberFTC::ECP
 
 class CucumberFTC::ECP::Facade

@@ -1,4 +1,4 @@
-require 'module_def'
+require File.dirname(__FILE__)+'/module_def'
 require 'erb'
 class CucumberFTC::Template::Feature 
 	attr_writer :feature_name

@@ -1,6 +1,6 @@
-require 'module_def'
-require 'runtime'
-require 'configuration'
+require File.dirname(__FILE__)+'/module_def'
+require File.dirname(__FILE__)+'/runtime'
+require File.dirname(__FILE__)+'/configuration'
 class CucumberFTC::CucumberIntegration::Main
 	def initialize runtime, configuration
 		arguments_must_be(

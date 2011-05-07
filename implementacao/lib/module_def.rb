@@ -1,6 +1,7 @@
 module CucumberFTC
 end
 
+
 class Object
 	def arguments_must_be args={}
 		args.each{|argument,expected_type|
@@ -11,5 +12,13 @@ class Object
 				)
 			end
 		}
+	end
+
+	def debug msg
+		puts msg if debugging?
+	end
+
+	def debugging?
+		return true
 	end
 end

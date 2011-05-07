@@ -41,13 +41,13 @@ describe 'declaring ecp classes with ecp module' do
 		before :each do
 			valid_classes_to(
 				:var1,
-				'integer from 20 to 300',
-				'integer from 500 to 600'
+				'integer from 20 to 30',
+				'integer from 50 to 60'
 			)
 			valid_classes_to(
 				:var2,
 				'integer from 40 to 50',
-				'integer from 60 to 100' 
+				'integer from 60 to 70' 
 			)
 			
 			invalid_classes_to(
@@ -77,11 +77,19 @@ describe 'declaring ecp classes with ecp module' do
 
 		it 'should generate a hash containing the ecp test cases' do
 			all_vars_combinations_must_have_same_size(@ecp_facade.generate_tests)
+			all_vars_combinations_must_have_the_same_size_of_vars(@ecp_facade.generate_tests)
+
 		end
 
 		def all_vars_combinations_must_have_same_size hash_with_cases
 			all_sizes = hash_with_cases.map{|test_case| test_case.size}
 			all_sizes.uniq.should be_true
+		end
+
+		def all_vars_combinations_must_have_the_same_size_of_vars tests
+			tests.each {|test|
+				test.size.should == 2
+			}
 		end
 
 	end

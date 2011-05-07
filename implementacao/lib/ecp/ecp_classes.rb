@@ -1,6 +1,6 @@
-require 'cucumber_ftc'
-require 'ecp_class'
-require 'more_than_one_class_owns_a_object_exception'
+require File.dirname(__FILE__)+'/module_def'
+require File.dirname(__FILE__)+'/ecp_class'
+require File.dirname(__FILE__)+'/more_than_one_class_owns_a_object_exception'
 class CucumberFTC::ECP::EcpClasses
 	def initialize
 		@classes = Array.new

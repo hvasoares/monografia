@@ -1,4 +1,4 @@
-require 'complex_logic_semantic_model'
+require File.dirname(__FILE__)+'/complex_logic_semantic_model'
 include CucumberFTC::ECP
 
 class CucumberFTC::ECP::OrSemanticModel < ComplexLogicSemanticModel

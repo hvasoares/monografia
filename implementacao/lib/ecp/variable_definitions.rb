@@ -1,6 +1,6 @@
-require 'cucumber_ftc'
-require 'no_regex_for_class_name'
-require 'class_definition'
+require File.dirname(__FILE__)+'/module_def'
+require File.dirname(__FILE__)+'/no_regex_for_class_name'
+require File.dirname(__FILE__)+'/class_definition'
 include CucumberFTC::ECP
 class CucumberFTC::ECP::VariableDefinitions 
 	def initialize possible_classes

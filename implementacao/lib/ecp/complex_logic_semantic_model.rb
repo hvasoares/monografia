@@ -1,4 +1,4 @@
-require 'semantic_model'
+require File.dirname(__FILE__)+'/semantic_model'
 
 class CucumberFTC::ECP::ComplexLogicSemanticModel < CucumberFTC::ECP::SemanticModel
 	def initialize *semantic_models

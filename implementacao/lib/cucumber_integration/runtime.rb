@@ -1,5 +1,5 @@
-require 'module_def'
-require 'configuration'
+require File.dirname(__FILE__)+'/module_def'
+require File.dirname(__FILE__)+'/configuration'
 require 'rubygems'
 require 'cucumber/runtime'
 class CucumberFTC::CucumberIntegration::Runtime

@@ -1,6 +1,6 @@
-require 'module_def'
-require 'runtime'
-require 'feature_listener'
+require File.dirname(__FILE__)+'/module_def'
+require File.dirname(__FILE__)+'/runtime'
+require File.dirname(__FILE__)+'/feature_listener'
 
 require 'rubygems'
 require 'cucumber/ast/scenario'
@@ -79,8 +79,8 @@ class CucumberFTC::CucumberIntegration::TreeWalker
 	end
 
 	def visit_tag_name name
-		puts 'tag names'
-		if @last_node == :scenario and name == 'ecp' then
+		puts 'tag names ' + name
+		if @last_node == :scenario and name == '@ecp' then
 			puts 'this scenario is ecp'
 			@scenario_with_ecp = true	
 			@features.push(@feature_name)

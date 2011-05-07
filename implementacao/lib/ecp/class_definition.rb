@@ -1,6 +1,6 @@
-require 'cucumber_ftc'
-require 'ecp_class'
-require 'semantic_model'
+require File.dirname(__FILE__)+'/module_def'
+require File.dirname(__FILE__)+'/ecp_class'
+require File.dirname(__FILE__)+'/semantic_model'
 
 include CucumberFTC::ECP
 

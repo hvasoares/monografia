@@ -1,5 +1,5 @@
-require 'cucumber_ftc'
-require 'variable_definitions'
+require File.dirname(__FILE__)+'/module_def'
+require File.dirname(__FILE__)+'/variable_definitions'
 
 class CucumberFTC::ECP::TestCaseGenerator
 
@@ -20,25 +20,32 @@ class CucumberFTC::ECP::TestCaseGenerator
 			)
 		end
 
+
 		return cartesian_product_from(input_set)
 	end
 
-	def cartesian_product_from inputs
+	def cartesian_product_from inputs		
 		set = [] 
 		return [] if inputs.empty?
 		if inputs.size == 1 then
+			debug("input size is one")	
 			return inputs.first.map{|input|
 				input.sample
 			}
 		end
+
+		debug("iterating through inputs, inputs size #{inputs.size}")
 		for input in inputs.first
-			inputs_tail = inputs[1..inputs.index(inputs.last)]
+			inputs_tail = inputs.slice(1..(inputs.size-1))
+			debug('set is ' + set.join(','))
+			debug('input tails size = ' + inputs_tail.size.to_s)
 			set.push(
 				generate_elements(
 					input.sample,
 					inputs_tail
 				)
 			)
+			debug('and now is ' + set.join(','))
 
 		end
 
@@ -48,9 +55,11 @@ class CucumberFTC::ECP::TestCaseGenerator
 	def generate_elements head,tail
 		result = []
 		for new_tails in cartesian_product_from(tail)
+			debug('result is' + result.join(','))
 			result.push(
 				[head,new_tails].flatten()
 			)
+			debug('result is now' + result.join(','))
 		end
 
 		return result

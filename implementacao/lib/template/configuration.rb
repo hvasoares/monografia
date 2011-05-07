@@ -1,5 +1,5 @@
-require 'module_def'
-require 'feature'
+require File.dirname(__FILE__)+'/module_def'
+require File.dirname(__FILE__)+'/feature'
 include CucumberFTC::Template
 class CucumberFTC::Template::Configuration
 	def feature destination

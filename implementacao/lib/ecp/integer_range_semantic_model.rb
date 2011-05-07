@@ -1,5 +1,5 @@
-require 'cucumber_ftc'
-require 'semantic_model'
+require File.dirname(__FILE__)+'/module_def'
+require File.dirname(__FILE__)+'/semantic_model'
 class CucumberFTC::ECP::IntegerRangeSemanticModel < CucumberFTC::ECP::SemanticModel
 	def self.regex
 		/integer from (\d+) to (\d+)/

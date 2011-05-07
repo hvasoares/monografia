@@ -1,11 +1,13 @@
-require 'module_def'
-require 'configuration'
-require 'runtime'
-require 'main'
+require File.dirname(__FILE__)+'/module_def'
+require  File.dirname(__FILE__)+'/configuration'
+require File.dirname(__FILE__)+'/runtime'
+require File.dirname(__FILE__)+'/main'
+
+include CucumberFTC::CucumberIntegration
 class CucumberFTC::CucumberIntegration::Facade
 	
 	def main
-		@configuration = Configuration.new(
+		@configuration = CucumberFTC::CucumberIntegration::Configuration.new(
 			Cucumber::Cli::Configuration.new
 		)
 		runtime = Runtime.new(Cucumber::Runtime.new,@configuration)
