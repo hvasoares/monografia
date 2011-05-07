@@ -20,9 +20,9 @@ describe CucumberFTC::ECP::Configuration do
 			:var_defs
 		).and_return(facade)
 
-		facade.should_receive(:register_class).with(
-			CucumberFTC::ECP::IntegerRangeSemanticModel
-		)
+		[IntegerRangeSemanticModel,DoubleRangeSemantic].each{|klass|
+			facade.should_receive(:register_class).with(klass)
+		}
 
 		@instance.facade
 	end
