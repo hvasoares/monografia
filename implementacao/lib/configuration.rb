@@ -19,6 +19,7 @@ class CucumberFTC::Configuration
 			puts "Generating for feature " + feature
 			
 			file = template.feature('./features/'+ feature.gsub(" ","_")+'.ftc.feature')
+			file.feature_name = feature
 
 			integration.scenarios_for(feature).each do |scenario|
 				variables = ecp.facade

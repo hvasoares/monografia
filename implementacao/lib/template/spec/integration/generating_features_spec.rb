@@ -33,7 +33,7 @@ describe 'generating features' do
 <<EOF
 Feature: Feature_name
 
-Scenario: an scenario name
+Scenario Outline: an scenario name
 	Given step one
 
 	Examples:

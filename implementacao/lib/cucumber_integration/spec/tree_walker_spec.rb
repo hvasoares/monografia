@@ -22,8 +22,8 @@ describe TreeWalker do
 
 		non_ecp_scenario :desc
 		ecp_scenario :cenario_desc
-		@instance.features.include?(:name).should be_true
-		@instance.scenarios_for(:name).include?(
+		@instance.features.include?(:indent_name).should be_true
+		@instance.scenarios_for(:indent_name).include?(
 			:cenario_desc	
 		).should be_true
 
@@ -86,7 +86,7 @@ describe TreeWalker do
 	end
 
 	def ecp_scenario desc
-		visit_scenario desc,'ecp'
+		visit_scenario desc,'@ecp'
 		visit_steps true
 
 		declaration_step = mock('step',

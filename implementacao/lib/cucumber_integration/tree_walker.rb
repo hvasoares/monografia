@@ -69,8 +69,9 @@ class CucumberFTC::CucumberIntegration::TreeWalker
 
 
 	def visit_feature_name name,indented_name
-		puts 'feature name'
-		@feature_name = name
+		puts "feature name #{indented_name}"
+		@feature_name = indented_name
+
 	end
 
 	def visit_tags tags
