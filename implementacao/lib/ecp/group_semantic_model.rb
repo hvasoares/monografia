@@ -1,8 +1,10 @@
 require 'module_def'
+require File.dirname(__FILE__)+'/semantic_model'
 
-class CucumberFTC::ECP::GroupSemanticModel
+class CucumberFTC::ECP::GroupSemanticModel < CucumberFTC::ECP::SemanticModel
+	REGEX =/(.+),(.+)/
 	def self.regex	
-		/(.+),(.+)/
+		REGEX
 	end
 	
 	def initialize tail, head
@@ -10,12 +12,19 @@ class CucumberFTC::ECP::GroupSemanticModel
 	end
 
 	def others_elements tail
-		matches = self::regex.match(tail)
-		return tail if macthes.nil?
-		return [matches[2],other_elements(m[1])].flatten
+		matches = REGEX.match(tail)
+		return tail if matches.nil?
+		return [matches[2],others_elements(matches[1])].flatten
 	end
 
 	def applies_to? obj
 		@elements.include?(obj)
+	end
+
+	def samples
+		sample_size = @elements.size > 5 ? @elements.size : 5
+		Array.new(sample_size) do|i|
+			@elements[rand(sample_size)]
+		end
 	end
 end

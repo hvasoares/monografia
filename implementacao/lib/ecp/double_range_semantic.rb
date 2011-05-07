@@ -1,6 +1,7 @@
 require 'module_def'
+require File.dirname(__FILE__)+'/semantic_model'
 
-class CucumberFTC::ECP::DoubleRangeSemantic
+class CucumberFTC::ECP::DoubleRangeSemantic < CucumberFTC::ECP::SemanticModel
 	INTERVAL = 0.1
 	def self.regex 
 		/float from (\d+\.\d+) to (\d+\.\d+)/

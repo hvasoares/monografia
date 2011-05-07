@@ -22,5 +22,11 @@ describe CucumberFTC::ECP::GroupSemanticModel do
 		end
 	end
 
+	it 'should has samples' do
+		@instance.samples.each{|s|
+			@elems.include?(s).should == true
+		}
+	end
+
 end
 
