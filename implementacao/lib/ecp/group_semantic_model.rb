@@ -22,9 +22,10 @@ class CucumberFTC::ECP::GroupSemanticModel < CucumberFTC::ECP::SemanticModel
 	end
 
 	def samples
-		sample_size = @elements.size > 5 ? @elements.size : 5
+		sample_size = @elements.size < 5 ? @elements.size : 5
 		Array.new(sample_size) do|i|
-			@elements[rand(sample_size)]
+			sorted_pos =rand(sample_size)
+			@elements[sorted_pos]
 		end
 	end
 end

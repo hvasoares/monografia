@@ -19,12 +19,12 @@ describe 'generating features' do
 
 		@instance.add_scenario('an scenario name')
 		@instance.add_step('Given', 'step one')
-		@instance.add_examples_header('var1','var2')
+		@instance.add_examples_header('var1','var2','var3')
 		@instance.add_examples(
 			[
-				[1,2],
-				[3,4],
-				[5,6]
+				[1,2,3],
+				[4,5,6],
+				[7,8,9]
 			]
 		)
 
@@ -37,10 +37,10 @@ Scenario Outline: an scenario name
 	Given step one
 
 	Examples:
-		| var1 | var2 |
-		| 1    | 2   |
-		| 3    | 4   |
-		| 5    | 6   |
+		| var1 | var2 | var3 |
+		| 1    | 2   | 3 |
+		| 4   | 5   | 6 |
+		| 7    | 8  | 9 |
 EOF
 		)
 	end

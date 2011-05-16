@@ -23,14 +23,16 @@ class CucumberFTC::Template::Feature
 	end
 
 	def add_examples_header *headers
-		@examples_header[@last_added_scenario] =headers
+		@examples_header[@last_added_scenario] =headers.uniq
 	end
 
 	def add_examples examples
+		debug("examples is" )
+		for example in examples 
+			debug('==='+example.join(','))
+		end
 		@examples[@last_added_scenario] = examples
 	end
-
-	
 
 	def feature_text
 		destino = File.open(@destination,'w')

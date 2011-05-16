@@ -3,6 +3,7 @@ require File.dirname(__FILE__)+'/semantic_model'
 class CucumberFTC::ECP::EcpClass
 	attr_reader :name
 	def initialize name,semantic_model
+		@name = name
 		@semantic_model = semantic_model
 	end
 

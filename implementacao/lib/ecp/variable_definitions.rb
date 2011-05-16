@@ -39,13 +39,26 @@ class CucumberFTC::ECP::VariableDefinitions
 	def get_vars
 		@variables.map{|var|
 			var.name
-		}
+		}.uniq
 	end
 
 	def get_valid_inputs_for var_name
-		@variables.select{ |ecp_class|
-			ecp_class.name == var_name
-		}
+		result = []
+		for var in @variables
+			if var.name ==var_name then
+				result.push(var.sample)
+			end
+		end
+
+		result.flatten
+	end	
+
+	def get_all_valid_inputs
+		result = []
+		for var_name in get_vars
+			result.push(get_valid_inputs_for(var_name)) 
+		end
+		return result
 	end
 
 end

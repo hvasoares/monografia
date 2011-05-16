@@ -3,6 +3,7 @@ require File.dirname(__FILE__)+'/module_def'
 require 'cucumber_integration/facade'
 require 'template/configuration'
 require 'ecp/configuration'
+require 'combinatory_algorithms/one_wise'
 
 require 'cucumber'
 
@@ -11,6 +12,7 @@ class CucumberFTC::Configuration
 		integration = CucumberFTC::CucumberIntegration::Facade.new
 		ecp = CucumberFTC::ECP::Configuration.new
 		template = CucumberFTC::Template::Configuration.new
+		algorithm = CucumberFTC::CombinatoryAnalisys::OneWise.new
 		integration.main.run(argv)
 
 		puts "Creating the generated files"
@@ -21,20 +23,23 @@ class CucumberFTC::Configuration
 			file = template.feature('./features/'+ feature.gsub(" ","_")+'.ftc.feature')
 			file.feature_name = feature
 
+
 			integration.scenarios_for(feature).each do |scenario|
 				variables = ecp.facade
 				file.add_scenario(scenario)
 				integration.inputs_declaration_for(scenario).each do |input|
+					debug("registering #{input[0]} '#{input[1]}'")
 					variables.register_variable input[0],input[1]
 				end
 				file.add_examples_header *(
 					integration.inputs_declaration_for(scenario).map{|input| input[0]}
 				)
 
-				tests = variables.generate_tests
+				inputs = variables.get_all_valid_inputs
+				debug('inputs')
+				inputs.each{|i| debug("====" + i.join(','))}
+				tests =  algorithm.generate_tests *inputs
 				
-				puts tests.join
-
 				file.add_examples tests
 
 				integration.steps_for(scenario).each do |step|

@@ -84,6 +84,11 @@ describe CucumberFTC::ECP::Facade do
 				
 				@instance.generate_tests.should == :test_cases
 			end
+
+			it 'should generate all valid inputs' do
+				@var_defs.should_receive(:get_all_valid_inputs).and_return(:inputs)
+				@instance.get_all_valid_inputs.should == :inputs
+			end
 		end
 
 	end
