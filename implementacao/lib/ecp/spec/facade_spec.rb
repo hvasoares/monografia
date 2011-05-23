@@ -68,23 +68,7 @@ describe CucumberFTC::ECP::Facade do
 					'description'
 				)
 			end
-
-			it 'should generate an hash with variable name and its 
-				combinations' do
-				generator = mock(TestCaseGenerator)
-				TestCaseGenerator.should_receive(
-					:new
-				).with(
-					@var_defs
-				).and_return(generator)
-
-				generator.should_receive(:generate).and_return(
-					:test_cases
-				)
-				
-				@instance.generate_tests.should == :test_cases
-			end
-
+		
 			it 'should generate all valid inputs' do
 				@var_defs.should_receive(:get_all_valid_inputs).and_return(:inputs)
 				@instance.get_all_valid_inputs.should == :inputs

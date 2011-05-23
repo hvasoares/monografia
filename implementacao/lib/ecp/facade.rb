@@ -1,6 +1,5 @@
 require File.dirname(__FILE__)+'/module_def'
 require File.dirname(__FILE__)+'/variable_definitions'
-require File.dirname(__FILE__)+'/test_case_generator'
 include CucumberFTC::ECP
 
 class CucumberFTC::ECP::Facade
@@ -25,10 +24,6 @@ class CucumberFTC::ECP::Facade
 	def declare_invalid_variable variable,description
 		@variable_definitions.declare_invalid_input(variable)
 		@variable_definitions.with_description(description)
-	end
-
-	def generate_tests
-		TestCaseGenerator.new(@variable_definitions).generate
 	end
 	
 	def get_all_valid_inputs

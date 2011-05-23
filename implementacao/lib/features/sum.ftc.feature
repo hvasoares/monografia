@@ -10,7 +10,7 @@ Scenario Outline: sum
 	Examples:
 	| a | b | c |
 	
-	| b | 8 | 41 |
+	| c | 3 | 44 |
 
-	| x | 101.1 | 2.3 |
+	| y | 102.8 | 9.4 |
 

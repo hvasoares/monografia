@@ -29,7 +29,7 @@ describe CucumberFTC::ECP::VariableDefinitions do
 		it 'should register a variable' do
 			@class_defs.should_receive(:description_match_any_semantic_model?).with('description').and_return(true)
 			ecp_class = mock('ecpclass',:name=>'var name')
-			ecp_class.should_receive(:samples).twice.and_return(:sample)
+			ecp_class.should_receive(:sample).twice.and_return(:sample)
 			@class_defs.should_receive(:define_class).with(
 				'var name',
 				'description'
